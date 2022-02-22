@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb 15 13:27:43 2022
+
+@author: emily
+"""
+import time
+
+print("""
+      TERMINAL GAME
+      """)
+input("Press Enter to begin")
+class Ninja:
+    def __init__(self, has_sword = False, has_shield = False, health=100):
+        self.has_sword = has_sword
+        self.has_shield = has_shield
+        self.health = health
+    def appear(self):
+        if self.has_sword == False and self.has_shield == False:    
+            return print("""
+              _o_
+               |
+              ] ]
+              """)
+        elif self.has_sword == True and self.has_shield == True:
+            return print("""
+             \_o
+               |L|
+              ] ]
+              """)
+        elif self.has_sword == False and self.has_shield == True:
+            return print("""
+              _o
+               |L|
+              ] ]
+              """)
+        elif self.has_sword == True and self.has_shield == False:
+            return print("""
+                         
+              _o_/
+               |
+              ] ]
+              """)
+    def crouch(self):
+        if self.has_sword == False and self.has_shield == False:    
+            return print("""
+                         
+              _o_
+              ] ]
+              """)
+        elif self.has_sword == True and self.has_shield == True:
+            return print("""
+             \_o\
+              ] ]
+              """)
+        elif self.has_sword == False and self.has_shield == True:
+            return print("""
+                         
+              _o|
+              ] ]
+              """)
+        elif self.has_sword == True and self.has_shield == False:
+            return print("""
+                         
+              _o_/
+              ] ]
+              """)
+             
+#Introduction to terminal game
+print("You have parachuted down to Evil Island. The turbulent winds took off with your sword and shield. You must first find your sword and shield before conquering all evil.")
+player = Ninja()
+player.appear()
+print("You want a better view of the Island and climb a large redwood. You lick your finger and put it up in the air to assess the wind. It tells you that the force is quite strong and blowing east towards snowy cliffs in the distance. Your shield must not have traveled too far as it is comprised of tonubtainium the densest element in all known galaxies." )
+print("""
+                    ~  ~                                |
+              io_ ~ ~  ~  ~    ~ ~   ~                  |
+              ] ]  ~         ~  ~    ~                  | 
+              ^                                         |
+             ^^^                                        | 
+            ^^^^^                                       |
+             ||                                         |  
+             ||            .   ^       *   o         m  |
+              """)
+print("You see a shiny object way out towards the cliffs. You need to get closer to check it out. You climb back down the tree. Which direction to you head?")
+#Finding your shield
+direction = input("Enter E for east, N for north, W for west, and S for south: ")
+while direction != "E":
+    print("You head away from the snowy cliffs and have not found anything of use. Try heading in a different direction.")
+    direction = input("Enter E for east, N for north, W for west, and S for south: ")
+print("You walk towards the snowy cliffs and see a sparkly object lodged into a tree. You jump up to grab the tree branch but cannot jump high enough.")
+print("You look around and see a rock, a vine wrapped around another tree, and a pile of dirt. What do you want to further inspect?")
+choice = input("Enter D for dirt, V for vine, or R for rock: ")
+count = 0
+while choice != "RV" and choice != "VR":
+    if choice == "V":
+        print("You break the vine off the tree, you bunch it up and try tossing the bundle over the branch. Doesn't quite make it. You try again and again. You are exhausted with no results. You take a break.")  
+    elif choice == "R":
+        print("You pick up the rock and aim for the shiny object. Yout hit the object! However, you further lodge the object into the tree. Shucks. The rock comes hurling back down and lands near the dirt pile.")
+    elif choice == "D":
+        print("If only the pile of dirt was underneath the base of the tree. You begin hauling dirt from the pile to underneath the tree. OUCH, OWIE, OUCH! Shoot you have uncovered a red ants nest. And quickly cover it back up!")
+        player.health -= 10
+        print(f"You lost health. Your health is now at {player.health}.")
+    elif choice != "RV" or choice != "VR":
+        print("Clever idea! You unhatch your devised plan but it fails and leaves you to square 1.")
+    count += 1
+    if count > 2:
+        print("Try inspecting two objects at the same time.")
+    choice = input("Enter D for dirt, V for vine, or R for rock: ")
+    
+
+print("Genius! You tie the vine to the rock and toss the rock over the branch. With success you now climb the vine upto the branch and see your shield!")
+
+print("You hear a gaggle of gobblins headed your way. You head down the tree and prepare for an attak." )
+player.has_shield = True
+player.appear()
+player.crouch()
+
+print("You may stand or crouch to block with your shield. Look out the goblins are shooting rocks at you.")
+print("Enter S for stand and C for Crouch.")
+input("Are you ready for the attack: Y or N")
+print("""
+      
+      .    .   .       .
+                    .     .
+                    """)
+print("Enter S for stand and C for Crouch.")
+
+for i in range(5):
+    time.sleep(1)
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+shield = input("Six rocks were thrown. Enter sequence to block the attack: ")
+rock = "SSSCSC"
+for i in range(6):
+   
+    if rock[i] == shield[i] and rock[i] == "S":
+        print("""
+              _o
+               |L|.  
+              ] ]
+              """)
+        print("Successful Block!")
+    elif rock[i] == shield[i] and rock[i] == "C":
+        print("""
+             _o
+             ]]7.
+              """)
+        print("Successful Block!")
+    elif rock[i] != shield[i] and rock[i] == "S":
+        print("""
+             _x.
+             ]]7
+              """
+              )
+        print("Ouch! My head!")
+        player.health -= 10
+        print(f"Health = {player.health}")
+    elif rock[i] != shield[i] and rock[i] == "C":
+        print("""
+               _o
+               |L|  
+              ] x.
+              """)
+        print("Ouch my shin!")
+        player.health -= 10
+        print(f"Health = {player.health}")
+print("You do not have a sword and cannot fight back. You run north to escape the Goblins.")
+#Find the sword        
+                  
+                  
+            
+        
+
